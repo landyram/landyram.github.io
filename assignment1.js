@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function displayStockData(symbol) {
-        queryString = `http://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${symbol}`;
+        queryString = `https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${symbol}`;
 
 
         // fetch stock info
