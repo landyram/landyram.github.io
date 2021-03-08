@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //show header section when mouse over
     credits.addEventListener('mouseenter', header);
 
-    const url1 = 'http://www.randyconnolly.com/funwebdev/3rd/api/stocks/companies.php';
+    const url1 = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/companies.php';
 
     //declare variables
     const animation = document.querySelector('.animate');
