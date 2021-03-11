@@ -39,10 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const financialsBox = document.querySelector('div.i');
     financialsBox.style.display = "none";
 
-    // "elegant" solution 
-    const elegantSolution = document.querySelector('div.j');
-    elegantSolution.style.display = "none";
-
     //Create and append header
     const title = document.createElement('label');
     const credits = document.createElement('div');
@@ -288,11 +284,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //display chart C
                 displayChartC(data);
+
             })
             .catch(err => console.log(err));
     }
-
-
 
     //create elements for view button
     const viewChartsButton = document.createElement('button');
@@ -550,7 +545,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    let sortBool = true;
+    let sortBool = true; // variable to sort stock data
 
     //function to sort data by date
     function sortDate(data) {
@@ -645,14 +640,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // function creates bar charts using chartjs
     function displayChartA(data1) {
         //create div to hold chart
+        chartA.innerHTML = "";
         chartA.setAttribute('id', 'chartA');
         chartBox.appendChild(chartA);
 
         // Chart A - Bar
         canvas1.setAttribute('id', 'canvas1');
         document.querySelector('#chartA').appendChild(canvas1);
-        // canvas1.setAttribute('height', 400);
-        // canvas1.setAttribute('width', 400);
         var ctx = document.getElementById('canvas1').getContext('2d');
 
         var chart = new Chart(ctx, {
@@ -731,13 +725,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayChartC(data) {
 
         // Chart C - Line
+        chartC.innerHTML = "";
         canvas3.setAttribute('id', 'canvas3');
         chartC.setAttribute('id', 'chartC');
         chartBox.appendChild(chartC);
         chartC.appendChild(canvas3);
-        canvas3.setAttribute('height', 400);
-        canvas3.setAttribute('width', 600);
-        //const ctx3 = document.getElementById('canvas3').getContext('2d');
+
+        //push data points into array
         const dates = [];
         const volumes = [];
         const closingValues = [];
@@ -802,6 +796,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     }
+
     // function that triggers speech 
     function speak(data2) {
         speakBox.innerHTML = '';
@@ -857,40 +852,6 @@ document.addEventListener("DOMContentLoaded", function () {
             mapBox.style.display = "block";
             stockBox.style.display = "block";
         });
-
-    }
-    // check if company symbol has data filled
-    function checkIfDataExists(data) {
-        if (data.financials == null)
-            return false;
-        else
-            return true;
-    }
-    function displayElegantSolution() {
-
-        chartBox.style.display = "none";
-        speakBox.style.display = "none";
-        financialsBox.style.display = "none";
-
-        elegantSolution.style.display = "block";
-        const image = document.createElement('img');
-        const h2 = document.createElement('h2');
-        h2.textContent = "This data does not currently exist";
-        elegantSolution.appendChild(h2);
-        image.setAttribute('src', './images/placeholder.png');
-        elegantSolution.appendChild(image);
-        const btn = document.createElement('button');
-        elegantSolution.appendChild(btn);
-        btn.setAttribute('id', 'closeButton');
-        btn.addEventListener('click', () => {
-            listBox.style.display = "grid";
-            companyInfoBox.style.display = 'block';
-            ammBox.style.display = "block";
-            mapBox.style.display = "block";
-            stockBox.style.display = "block";
-            elegantSolution.style.display = "none";
-            elegantSolution.innerHTML = "";
-        })
 
     }
 
