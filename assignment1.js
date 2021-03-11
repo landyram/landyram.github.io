@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //display list of companies
     function displayList(data) {
         const suggestions = document.querySelector('#filterList');
-
+        chartBox.innerHTML = "";
         //loop through list of companies
         for (let d of data) {
             const companyName = document.createElement('li');
@@ -172,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector("div.f").style.display = "block";
 
                 //call on company info to display
+                clear();
                 displayCompanyInfo(d);
                 //call on map to display
                 displayMap(d);
@@ -192,6 +193,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function clear() {
+        chartBox.innerHTML = "";
+        return;
+    }
     //display company information
     function displayCompanyInfo(data) {
         //clear info box
@@ -274,10 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //call on function that creates avg, min, max table
                 stockCalculation(data);
-                financialsStored.push(...data);
 
-                //displayChartB(data);
-                displayChartC(data);
 
                 //push data into array named financialsStored
                 financialsStored.push(...data);
@@ -629,16 +631,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    //create elements for chart A
-    //caption for chart
-    const h2 = document.createElement('h2');
-    h2.textContent = "Chart";
-    chartBox.appendChild(h2);
-    const chartA = document.createElement('div');
-    let canvas1 = document.createElement('canvas');
+
+
 
     // function creates bar charts using chartjs
     function displayChartA(data1) {
+        //create elements for chart A
+        //caption for chart
+        const h2 = document.createElement('h2');
+        h2.textContent = "Chart";
+        chartBox.appendChild(h2);
+        const chartA = document.createElement('div');
+        let canvas1 = document.createElement('canvas');
+
         //create div to hold chart
         chartA.innerHTML = "";
         chartA.setAttribute('id', 'chartA');
@@ -680,16 +685,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //create div for chart B
-    const chartB = document.createElement('div');
-    chartB.setAttribute('id', 'chartB');
-    chartBox.appendChild(chartB);
+
 
     // function creates candlestick charts using ECharts
     function displayChartB(min_open, max_open, avg_open,
         min_close, max_close, avg_close,
         min_low, max_low, avg_low,
         min_high, max_high, avg_high) {
+
+        //create div for chart B
+        const chartB = document.createElement('div');
+        chartB.setAttribute('id', 'chartB');
+        chartBox.appendChild(chartB);
 
         //set variables
         var chartDom = document.getElementById('chartB');
@@ -717,12 +724,14 @@ document.addEventListener("DOMContentLoaded", function () {
         option && myChart.setOption(option);
     }
 
-    //create elements for chart C
-    let canvas3 = document.createElement('canvas');
-    const chartC = document.createElement('div');
+
 
     //create chart C
     function displayChartC(data) {
+
+        //create elements for chart C
+        let canvas3 = document.createElement('canvas');
+        const chartC = document.createElement('div');
 
         // Chart C - Line
         chartC.innerHTML = "";
@@ -775,12 +784,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 scales: {
                     yAxes: [{
-                        type: 'linear', 
+                        type: 'linear',
                         display: true,
                         position: 'left',
                         id: 'y-axis-1',
                     }, {
-                        type: 'linear', 
+                        type: 'linear',
                         display: true,
                         position: 'right',
                         id: 'y-axis-2',
